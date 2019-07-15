@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    MediaLounge
+ * @package     MediaLounge_NotificationAlerts
+ * @copyright   Mario SAM (http://mariosam.com.br)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+
+	<!-- module version: beta --> 
+    <modules>
+        <MediaLounge_NotificationAlerts>
+            <version>0.1.0</version>
+        </MediaLounge_NotificationAlerts>
+    </modules>
+
+	<global>
+        <models>
+            <notificationalerts>
+                <class>MediaLounge_NotificationAlerts_Model</class>
+                <resourceModel>notificationalerts_resource</resourceModel>
+            </notificationalerts>
+        </models>
+        <helpers>
+            <notificationalerts>
+                <class>MediaLounge_NotificationAlerts_Helper</class>
+            </notificationalerts>
+        </helpers>
+	</global>
+
+    <admin>
+        <routers>
+        	<!-- call to action to dispatch external link -->
+            <adminhtml>
+                <args>
+                    <modules>
+                        <support before="Mage_Adminhtml">MediaLounge_NotificationAlerts_Adminhtml</support>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+	<adminhtml>
+		<!-- capture login event to verify rss -->
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <notificationalerts>
+                        <class>notificationalerts/observer</class>
+                        <method>preDispatch</method>
+                    </notificationalerts>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+        <!-- testando traducao em outro local -->
+        <translate>
+        	<modules>
+        		<MediaLounge_NotificationAlerts>
+        			<files>
+        				<default>Notification_Alerts.csv</default>
+        			</files>
+        		</MediaLounge_NotificationAlerts>
+        	</modules>
+        </translate>
+	 	<!-- access control for backend users -->
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <notificationalerts translate="title">
+                                            <title>MediaLounge - Extensions Information</title>
+                                        </notificationalerts>
+                                        <notificationalerts translate="title">
+                                            <title>MediaLounge - Extensions Store</title>
+                                        </notificationalerts>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+	<!-- load default values to fields -->
+    <default>
+        <system>
+            <notificationalerts>
+                <!-- feed_url>notifications.magentocommerce.com/community/notifications.rss</feed_url -->
+                <feed_url>mariosam.com.br/feed-test.rss</feed_url>
+                <popup_url>widgets.magentocommerce.com/notificationPopup</popup_url>
+                <severity_icons_url>widgets.magentocommerce.com/%s/%s.gif</severity_icons_url>
+                <use_https>0</use_https>
+                <frequency>1</frequency>
+                <last_update>0</last_update>
+            </notificationalerts>
+        </system>
+    </default>
+</config>

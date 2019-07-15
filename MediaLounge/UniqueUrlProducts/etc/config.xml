@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+	<!-- module version: beta --> 
+    <modules>
+        <MediaLounge_UniqueUrlProducts>
+            <version>0.1.0</version>
+        </MediaLounge_UniqueUrlProducts>
+    </modules>
+
+	<!-- global config specifications -->
+	<global>
+    	<!--  
+		<importexport>
+            <import>
+                <catalog_product>
+                    <attributes>
+                        <url_key>
+                            <backend_model>importexport/product_attribute_backend_urlkey</backend_model>
+                        </url_key>
+                    </attributes>
+                </catalog_product>
+            </import>
+        </importexport>
+        -->
+
+    	<models>
+			<!-- set directory of Models for this module -->
+            <uniqueurlproducts>
+                <class>MediaLounge_UniqueUrlProducts_Model</class>
+                <resourceModel>uniqueurlproducts_resource</resourceModel>
+
+            	<import>
+                	<catalog_product>
+                    	<attributes>
+                        	<url_key>
+                            	<backend_model>uniqueurlproducts/product_attribute_backend_urlkey</backend_model>
+                        	</url_key>
+                    	</attributes>
+                	</catalog_product>
+            	</import>
+            </uniqueurlproducts>
+
+			<!-- Mage_ImportExport_Model_Product_Attribute_Backend_Urlkey -->
+            <importexport>
+            	<rewrite>
+            		<product_attribute_backend_urlkey>MediaLounge_UniqueUrlProducts_Model_Product_Attribute_Backend_Urlkey</product_attribute_backend_urlkey>
+
+            		<import_catalog_product_attribute_backend_urlkey>MediaLounge_UniqueUrlProducts_Model_Product_Attribute_Backend_Urlkey</import_catalog_product_attribute_backend_urlkey>
+            	</rewrite>
+            </importexport>
+            
+			<!-- override the class to check url key before save --> 
+    		<catalog>
+        		<rewrite>
+        			<product_attribute_backend_urlkey>MediaLounge_UniqueUrlProducts_Model_Product_Attribute_Backend_Urlkey</product_attribute_backend_urlkey>
+            	</rewrite>
+            </catalog>
+            <!-- override the class to check url key before import  
+            <importexport>
+            	<rewrite>
+            		<import_entity_product>MediaLounge_UniqueUrlProducts_Model_Import_Entity_Product</import_entity_product>
+            	</rewrite>
+            </importexport>
+            <importexport>
+            	<rewrite>
+            		<import_entity_product_type_simple>MediaLounge_UniqueUrlProducts_Model_Import_Entity_Product_Type_Simple</import_entity_product_type_simple>
+            	</rewrite>
+            </importexport>
+            -->
+            
+            <!-- Mage_ImportExport_Model_Import_Proxy_Product --> 
+            <importexport>
+            	<rewrite>
+            		<import_proxy_product>MediaLounge_UniqueUrlProducts_Model_Product_Attribute_Backend_Urlkey</import_proxy_product>
+            	</rewrite>
+            </importexport>
+            
+    	</models> 
+        <helpers>
+            <uniqueurlproducts>
+                <class>MediaLounge_UniqueUrlProducts_Helper</class>
+            </uniqueurlproducts>
+        </helpers>
+	</global>
+	
+	<adminhtml>
+		<!-- capture validate product create -->
+        <events>
+        	<!-- lista de eventos mapeados: https://www.nicksays.co.uk/magento-events-cheat-sheet-1-7/ -->
+        	<!--
+            <catalog_product_validate_before>
+                <observers>
+                    <uniqueurlproducts>
+                        <class>uniqueurlproducts/observer</class>
+                        <method>beforeValidate</method>
+                    </uniqueurlproducts>
+                </observers>
+            </catalog_product_validate_before>
+            -->
+            <!-- when create or edit a product in admin 
+            <catalog_product_validate_after>
+                <observers>
+                    <uniqueurlproducts>
+                        <class>uniqueurlproducts/observer</class>
+                        <method>afterValidate</method>
+                    </uniqueurlproducts>
+                </observers>
+            </catalog_product_validate_after>
+            -->
+            <!-- when import file data product  
+            <catalog_product_import_finish_before>
+				<observers>
+                    <uniqueurlproducts>
+						<class>uniqueurlproducts/observer</class>
+						<method>importValidate</method>
+                    </uniqueurlproducts>
+				</observers>
+			</catalog_product_import_finish_before>
+			-->
+        </events>
+
+	 	<!-- access control for backend users -->
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <uniqueurlproducts translate="title">
+                                            <title>MediaLounge - Extensions Information</title>
+                                        </uniqueurlproducts>
+                                        <uniqueurlproducts translate="title">
+                                            <title>MediaLounge - Extensions Store</title>
+                                        </uniqueurlproducts>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+</config>

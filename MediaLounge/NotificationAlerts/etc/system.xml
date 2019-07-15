@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    MediaLounge
+ * @package     MediaLounge_NotificationAlerts
+ * @copyright   Mario SAM (http://mariosam.com.br)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <sections>
+        <system>
+            <groups>
+            	<!-- create config fields in admin -->
+                <notificationalerts translate="label" module="notificationalerts">
+                    <label>Media Lounge :: Notifications</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1250</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <feed_url translate="label">
+                            <label>URL to Get Feed</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <!-- if I wanna hide this field by condition -->
+                            <!-- depends><allowspecific>1</allowspecific></depends -->
+                        </feed_url>
+                        <last_update translate="label">
+                            <label>Last Update</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>adminhtml/system_config_form_field_notification</frontend_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </last_update>
+                    </fields>
+                </notificationalerts>
+            </groups>
+        </system>
+    </sections>
+</config>

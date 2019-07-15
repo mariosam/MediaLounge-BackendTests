@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    MediaLounge
+ * @package     MediaLounge_NotificationAlerts
+ * @copyright   Mario SAM (http://mariosam.com.br)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+	<!-- create menu support in the main nav -->
+    <menu>
+        <extrasupport translate="title" module="notificationalerts">
+            <title>Media Lounge Support</title>
+            <action>adminhtml/support</action>
+            <sort_order>1000</sort_order>
+        </extrasupport>
+	</menu>
+	<!-- access control for backend users -->
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <notificationalerts translate="title" module="notificationalerts">
+                                <title>Media Lounge :: Notifications</title>
+                                <sort_order>100</sort_order>
+                                <children>
+                                    <show_toolbar translate="title">
+                                        <title>Show Toolbar</title>
+                                        <sort_order>10</sort_order>
+                                    </show_toolbar>
+                                    <show_list translate="title">
+                                        <title>Show List</title>
+                                        <sort_order>20</sort_order>
+                                    </show_list>
+                                    <mark_as_read translate="title">
+                                        <title>Mark as read</title>
+                                        <sort_order>30</sort_order>
+                                    </mark_as_read>
+                                    <remove translate="title">
+                                        <title>Remove</title>
+                                        <sort_order>40</sort_order>
+                                    </remove>
+                                </children>
+                            </notificationalerts>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
